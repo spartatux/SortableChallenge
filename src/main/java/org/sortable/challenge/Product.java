@@ -1,19 +1,27 @@
 package org.sortable.challenge;
 
 import com.google.gson.annotations.SerializedName;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.ArrayList;
 
 public class Product
 {
-    static{
-        
-    }
+
     @SerializedName("product_name") private String productName;
     private String manufacturer;
     private String model;
     private String family;
     @SerializedName("announced-date") private String announcedDate;
-    private Parser<Product> productParser;
+    private static Parser<Product> productParser;
 
+    static{
+        productParser = new GSonParser<Product>(Configuration.getPropertie("productFile"));
+    }
+    public static ArrayList<Product> getAll() throws FileNotFoundException, IOException
+    {
+        return productParser.getAll();
+    } 
     public String getProductName()
     {
         return productName;
@@ -64,14 +72,14 @@ public class Product
         this.announcedDate = announcedDate;
     }
 
-    public Parser<Product> getProductParser()
+    public static Parser<Product> getProductParser()
     {
         return productParser;
     }
 
-    public void setProductParser(Parser<Product> productParser)
+    public static void setProductParser(Parser<Product> aProductParser)
     {
-        this.productParser = productParser;
+        productParser = aProductParser;
     }
 
     @Override
