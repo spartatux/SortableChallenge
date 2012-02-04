@@ -26,6 +26,7 @@ public class Configuration
         try
         {
             properties = new Properties();
+            loadDefaultProperties();
             loadProperties();
         }
         catch (IOException ex)
@@ -42,8 +43,9 @@ public class Configuration
     private static void loadDefaultProperties()
     {
         Logger.getLogger(Main.class.getName()).log(Level.INFO, "Loading default properties ...");
-        properties.setProperty("listingFile", "listing.txt");
-        properties.setProperty("productFile", "product.txt");
+        properties.setProperty("listingFile", "listings.txt");
+        properties.setProperty("productFile", "products.txt");
+        properties.setProperty("resultFile", "results.txt");
         Logger.getLogger(Main.class.getName()).log(Level.INFO, "Default properties loaded.");
     }
 
@@ -53,7 +55,6 @@ public class Configuration
         Logger.getLogger(Main.class.getName()).log(Level.INFO, "Properties file loading...");
         File propertiesFile = new File(propertieFile);
 
-        loadDefaultProperties();
         if (!propertiesFile.exists())
         {
             Logger.getLogger(Main.class.getName()).log(Level.WARNING, "Properties file not found a new properties file have been created.");
