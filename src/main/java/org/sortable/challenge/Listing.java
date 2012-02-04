@@ -1,12 +1,22 @@
 package org.sortable.challenge;
 
+import java.util.ArrayList;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 public class Listing {
     private String title;
     private String manufacturer;
     private String currency;
     private float price;
-    private Parser<Listing> listingParser;
+    private static Parser<Listing> listingParser;
 
+    static{
+        listingParser = new GSonParser<Listing>(Configuration.getPropertie("listingFile"));
+    }
+
+    public static ArrayList<Listing> getAll()throws FileNotFoundException,IOException{
+	return listingParser.getAll();
+    }
     public String getTitle() {
         return title;
     }
@@ -39,12 +49,8 @@ public class Listing {
         this.price = price;
     }
 
-    public Parser<Listing> getListingParser() {
-        return listingParser;
-    }
-
-    public void setListingParser(Parser<Listing> listingParser) {
-        this.listingParser = listingParser;
+    public static void setListingParser(Parser<Listing> aListingParser) {
+        listingParser = aListingParser;
     }
 
     @Override
