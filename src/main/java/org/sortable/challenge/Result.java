@@ -13,10 +13,10 @@ import java.util.ArrayList;
  */
 public class Result
 {
-
+    
     @SerializedName("product_name") private String productName;
     private ArrayList<Listing> listings;
-
+    private IProductMatcher productMatcher;
     public Result()
     {
         listings = new ArrayList<Listing>();
@@ -46,7 +46,9 @@ public class Result
         return listings;
     }
 
-
+    /**
+     * add a listing
+     */
     public void addListing(Listing listing)
     {
         this.listings.add(listing);
