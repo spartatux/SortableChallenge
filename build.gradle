@@ -9,3 +9,10 @@ dependencies {
   compile 'com.google.code.gson:gson:2.1','log4j:log4j:1.2.+'
   testCompile 'junit:junit:4.+'
 }
+
+
+task run(type: JavaExec, dependsOn: classes) {
+  main = 'org.sortable.challenge.Main'
+  classpath sourceSets.main.classesDir
+  classpath configurations.runtime
+}
