@@ -1,0 +1,5 @@
+#Create default properties file
+#Sat Feb 04 12:08:23 EST 2012
+resultFile=results.txt
+productFile=products.txt
+listingFile=listings.txt
